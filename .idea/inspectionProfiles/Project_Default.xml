@@ -1,0 +1,28 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="blog.articles.views.main_app" />
+          <option value="django.db.models.fields.CharField.__add__" />
+          <option value="library.library.views.main_app" />
+          <option value="library.genres.views.main_app" />
+          <option value="library.borrow_requests.views.main_app" />
+          <option value="library.books.views.main_app" />
+          <option value="library.authors.views.main_app" />
+          <option value="library.main_app.models.genres" />
+          <option value="library.books.forms.books" />
+          <option value="library.books.forms.authors" />
+          <option value="library.books.forms.*" />
+          <option value="library.library.views.*" />
+          <option value="library.main_app.models.*" />
+          <option value="library.main_app.admin.borrow_requests" />
+          <option value="blog.topics.models.*" />
+          <option value="blog.articles.views.*" />
+          <option value="blog.main_app.models.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
