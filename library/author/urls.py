@@ -3,7 +3,7 @@ from django.urls import path, include
 from .views import AuthorViewSet
 
 router = routers.SimpleRouter()
-router.register("author", AuthorViewSet)
+router.register("authors", AuthorViewSet)
 urlpatterns = [
     path('', include(router.urls))
 ]

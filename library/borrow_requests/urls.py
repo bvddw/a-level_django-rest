@@ -1,9 +1,9 @@
 from rest_framework import routers
 from django.urls import path, include
-from .views import BookViewSet
+from .views import BorrowRequestViewSet
 
 router = routers.SimpleRouter()
-router.register("books", BookViewSet)
+router.register("requests", BorrowRequestViewSet)
 urlpatterns = [
     path('', include(router.urls))
 ]

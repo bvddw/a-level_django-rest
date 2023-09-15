@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken import views
 
 urlpatterns = [
+    path('api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
+    path('users/', include(("user_app.urls", 'users'), namespace='users')),
     path('books/', include(("books.urls", 'books'), namespace='books')),
     path('authors/', include(("author.urls", 'author'), namespace='author')),
+    path('borrow-requests/', include(('borrow_requests.urls', 'borrow_requests'), namespace='borrow_requests')),
 ]
