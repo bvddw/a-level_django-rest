@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -13,6 +14,7 @@ class AuthorViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filter_backends = [AuthorBooksFilterByName]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     @action(detail=True, methods=["GET"])
     def authorsBooks(self, request, pk=None):
