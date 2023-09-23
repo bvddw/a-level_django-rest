@@ -9,6 +9,8 @@ from .tasks import check_comment_by_admin
 
 
 def approve_comment(request, comment_id):
+    if not request.user.is_superuser:
+        return redirect('/books/books/')
     comment = get_object_or_404(Comment, id=comment_id)
     comment.is_checked_by_admin = True
     comment.save()
@@ -19,6 +21,8 @@ def approve_comment(request, comment_id):
 
 
 def reject_comment(request, comment_id):
+    if not request.user.is_superuser:
+        return redirect('/books/books/')
     comment = get_object_or_404(Comment, id=comment_id)
     comment.is_checked_by_admin = False
     comment.save()

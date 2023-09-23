@@ -18,3 +18,6 @@ library/borrow_requests/tests/__pycache__/
 
 library/user_app/__pycache__/
 library/user_app/migrations/__pycache__/
+
+library/comment/__pycache__/
+library/comment/migrations/__pycache__/
