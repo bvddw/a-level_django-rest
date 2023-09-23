@@ -21,8 +21,9 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
-    path('users/', include(("user_app.urls", 'users'), namespace='users')),
-    path('books/', include(("books.urls", 'books'), namespace='books')),
-    path('authors/', include(("author.urls", 'author'), namespace='author')),
-    path('borrow-requests/', include(('borrow_requests.urls', 'borrow_requests'), namespace='borrow_requests')),
+    path('users/', include(("user_app.urls", "users"), namespace="users")),
+    path('books/', include(("books.urls", "books"), namespace="books")),
+    path('authors/', include(("author.urls", "author"), namespace="author")),
+    path('comments/', include(("comment.urls", "comment"), namespace="comment")),
+    path('borrow-requests/', include(("borrow_requests.urls", "borrow_requests"), namespace="borrow_requests")),
 ]
