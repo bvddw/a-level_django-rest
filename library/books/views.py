@@ -1,32 +1,28 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Book
 from .serializers import BookSerializer
+from .filters import BookFilterByAuthorAge
+from comment.models import Comment
 
 
-class BookCreateListView(ListCreateAPIView):
+class BookViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        author_age = self.request.query_params.get('author_age')
-
-        if author_age:
-            try:
-                author_age = int(author_age)
-                queryset = queryset.filter(author__age__gte=author_age)
-            except ValueError:
-                pass
-
-        return queryset
-
+    filter_backends = [BookFilterByAuthorAge]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         title = serializer.validated_data.get('title', '') + '!'
         serializer.save(title=title)
 
+    @action(detail=True, methods=["GET"])
+    def commentsBooks(self, request, pk=None):
+        book = Book.objects.get(pk=pk)
 
-class BookDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+        comments = Comment.objects.filter(book=book, is_checked_by_admin=True).values_list('id', 'text', 'author')
+        return Response({'comments': comments}, status=status.HTTP_200_OK)
